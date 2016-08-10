@@ -134,5 +134,5 @@
       return this.on('mouseleave', callback);
     }
 }
-  $.smallfoot = (options) => new SmallFoot($, options);
+  $.smallfoot = options => new SmallFoot(options);
 })($ || jQuery);
