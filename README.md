@@ -2,7 +2,7 @@
 A simpler version of [bigfoot.js](https://github.com/lemonmade/bigfoot) in ES6
 
 smallfoot is a small footnote library that takes a different approach to writing footnotes
-compared to bigfoot. smallfoot is all about the KISS principle and therefore leaves styling
+compared to bigfoot. smallfoot's philosophy is all about the KISS principle and therefore leaves styling
 up to the user. However, smallfoot does provide a powerful syntax converter along with css
 classes that help the user find the right script or footnote.
 
