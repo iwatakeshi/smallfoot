@@ -7,6 +7,30 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/css/tooltipster.bundle.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
+    <script src="javascripts/smallfoot/dist/smallfoot.min.js">
+    $(document).ready(function (){
+      $.smallfoot({
+        footnotes: {
+          show: false
+        }
+      })
+      .ready(function ({ references }) {
+        references.forEach(el => $(el).addClass('tooltip'));
+        $('.tooltip').tooltipster({ trigger: 'click' });
+      })
+      .onClick(function ({ target, event }) {
+        event.preventDefault();
+      })
+      .onMouseEnter(function ({ target }) {
+        const footnote = $(target).find('a').attr('href');
+        $(target).tooltipster('content', $(footnote).text());
+      });
+    })
+    </script>
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
@@ -35,10 +59,15 @@
 
 <p>A simpler version of <a href="https://github.com/lemonmade/bigfoot">bigfoot.js</a> in ES6</p>
 
-<p>smallfoot is a small footnote library that takes a different approach to writing footnotes
-compared to bigfoot. smallfoot's philosophy is all about the KISS principle and therefore leaves styling
-up to the user. However, smallfoot does provide a powerful syntax converter along with css
-classes that help the user find the right script or footnote.</p>
+<p>
+smallfoot is a small footnote library that takes a different approach to writing footnotes
+compared to bigfoot^1^. smallfoot's philosophy is all about the KISS principle and therefore leaves styling
+up to the user. However, smallfoot does provide a powerful syntax converter^2^ along with css
+classes that help the user find the right script or footnote.
+
+^1: { smallfoot also uses ES6 instead of CoffeeScript. }
+^2: { It's regex doing the hard work. }
+</p>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
@@ -72,7 +101,7 @@ classes that help the user find the right script or footnote.</p>
 <h3>
 <a id="using-tooltipster-for-footnotes" class="anchor" href="#using-tooltipster-for-footnotes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using <a href="http://iamceege.github.io/tooltipster/">Tooltipster</a> for footnotes.</h3>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">ready</span>(<span class="pl-k">function</span> ({ references }){
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">ready</span>(<span class="pl-k">function</span> (){
   <span class="pl-smi">$</span>.<span class="pl-en">smallfoot</span>({
     footnotes<span class="pl-k">:</span> {
       show<span class="pl-k">:</span> <span class="pl-c1">false</span>
