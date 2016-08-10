@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Smallfoot by iwatakeshi</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Smallfoot</h1>
+        <p class="header">A simpler version of bigfoot.js in ES6</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/iwatakeshi/smallfoot/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/iwatakeshi/smallfoot/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/iwatakeshi/smallfoot">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/iwatakeshi">iwatakeshi</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a id="smallfoot" class="anchor" href="#smallfoot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>smallfoot</h1>
+
+<p>A simpler version of <a href="https://github.com/lemonmade/bigfoot">bigfoot.js</a> in ES6</p>
+
+<p>smallfoot is a small footnote library that takes a different approach to writing footnotes
+compared to bigfoot. smallfoot's philosophy is all about the KISS principle and therefore leaves styling
+up to the user. However, smallfoot does provide a powerful syntax converter along with css
+classes that help the user find the right script or footnote.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-text-html-basic"><pre>
+<span class="pl-c">&lt;!-- Write your superscripts and subscripts --&gt;</span>
+&lt;<span class="pl-ent">p</span>&gt;
+  This is a superscript^1^
+  This is a subscript~1~
+&lt;/<span class="pl-ent">p</span>&gt;
+<span class="pl-c">&lt;!-- </span>
+<span class="pl-c">  Write your footnotes; Note that it doesn't matter where the</span>
+<span class="pl-c">  footnotes are placed and could have been together with the scripts.</span>
+<span class="pl-c"> --&gt;</span>
+&lt;<span class="pl-ent">p</span>&gt;
+  ^1: { This is a footnote for the superscript. }
+  ~1: { This is a footnote for the subscript. }
+&lt;/<span class="pl-ent">p</span>&gt;
+
+<span class="pl-c">&lt;!-- Add JQuery --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://code.jquery.com/jquery-3.1.0.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-c">&lt;!-- Add smallfoot --&gt;</span>
+<span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>{path to smallfoot}<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1">  <span class="pl-c">// Initialize</span></span>
+<span class="pl-s1">  <span class="pl-smi">$</span>.<span class="pl-en">smallfoot</span>();</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<h2>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced Usage</h2>
+
+<h3>
+<a id="using-tooltipster-for-footnotes" class="anchor" href="#using-tooltipster-for-footnotes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using <a href="http://iamceege.github.io/tooltipster/">Tooltipster</a> for footnotes.</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">ready</span>(<span class="pl-k">function</span> ({ references }){
+  <span class="pl-smi">$</span>.<span class="pl-en">smallfoot</span>({
+    footnotes<span class="pl-k">:</span> {
+      show<span class="pl-k">:</span> <span class="pl-c1">false</span>
+    }
+  })
+  .<span class="pl-en">ready</span>(<span class="pl-k">function</span> ({ references }) {
+    <span class="pl-smi">references</span>.<span class="pl-en">forEach</span>(<span class="pl-smi">el</span> <span class="pl-k">=&gt;</span> <span class="pl-en">$</span>(el).<span class="pl-en">addClass</span>(<span class="pl-s"><span class="pl-pds">'</span>tooltip<span class="pl-pds">'</span></span>));
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.tooltip<span class="pl-pds">'</span></span>).<span class="pl-en">tooltipster</span>({ trigger<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span> });
+  })
+  .<span class="pl-en">onClick</span>(<span class="pl-k">function</span> ({ target, <span class="pl-c1">event</span> }) {
+    <span class="pl-c1">event</span>.<span class="pl-en">preventDefault</span>();
+  })
+  .<span class="pl-en">onMouseEnter</span>(<span class="pl-k">function</span> ({ target }) {
+    <span class="pl-k">const</span> <span class="pl-c1">footnote</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(target).<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>href<span class="pl-pds">'</span></span>);
+    <span class="pl-en">$</span>(target).<span class="pl-en">tooltipster</span>(<span class="pl-s"><span class="pl-pds">'</span>content<span class="pl-pds">'</span></span>, <span class="pl-en">$</span>(footnote).<span class="pl-c1">text</span>());
+  });
+})</pre></div>
+
+<h2>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Methods</h2>
+
+<h3>
+<a id="readycallback-function" class="anchor" href="#readycallback-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>ready(callback: Function)</code>
+</h3>
+
+<p>This method calls the callback function and passes an <em>object</em> with an array of <code>references</code>
+and <code>footnotes</code>.</p>
+
+<p>Note/TODO: This method is not event based and will be called when you call it after initialization.</p>
+
+<p>Exmaple:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">$</span>.<span class="pl-en">smallfoot</span>().<span class="pl-en">ready</span>(<span class="pl-k">function</span> ({ references, footnotes }) { <span class="pl-c">/* */</span> })</pre></div>
+
+<h3>
+<a id="onevent-string-callback-function" class="anchor" href="#onevent-string-callback-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>on(event: String, callback: Function)</code>
+</h3>
+
+<p>This method registers the callback to the specified event for any superscript and subscript references.</p>
+
+<p>Note: Helper methods such as <code>onClick(), onMouseEnter(), onMouseLeave()</code> are available.
+Also, every registered callback will receive an <em>object</em> with <code>event</code>, <code>type: String</code>, and a custom <code>target</code>
+which will always refer to the parent wrapper of <code>&lt;a&gt;</code>.</p>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Options</h2>
+
+<h3>
+<a id="boolean-optionsreferencesusediv" class="anchor" href="#boolean-optionsreferencesusediv" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>{Boolean} options.references.useDiv</code>
+</h3>
+
+<p>Determines whether a <code>div</code> should be used instead of <code>sup</code> or <code>sub</code>.</p>
+
+<h3>
+<a id="boolea-optionsfootnotesshow" class="anchor" href="#boolea-optionsfootnotesshow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>{Boolea} options.footnotes.show</code>
+</h3>
+
+<p>Determines whether the <code>ul</code> or <code>ol</code> containing the footnotes should be displayed.</p>
+
+<h2>
+<a id="css-classes" class="anchor" href="#css-classes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CSS Classes</h2>
+
+<p>smallfoot follows a simple convention for its classes:</p>
+
+<div class="highlight highlight-source-css"><pre><span class="pl-c">/* The elements that contains the smallfoot class */</span>
+<span class="pl-e">.smallfoot</span> { }
+
+<span class="pl-c">/* The elements that contains the superscript and subscript class */</span>
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.superscript</span> { }
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.subscript</span> { }
+
+<span class="pl-c">/* The elements that contains the superscript and subscript reference class */</span>
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.superscript</span> <span class="pl-e">.reference</span> { }
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.subscript</span> <span class="pl-e">.reference</span> { }
+
+<span class="pl-c">/* The elements that contains the superscript and subscript footnote class */</span>
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.superscript</span> <span class="pl-e">.footnote</span> { }
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.subscript</span> <span class="pl-e">.footnote</span> { }
+
+<span class="pl-c">/* The elements that contains the footnotes class */</span>
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.footnotes</span> { }
+
+<span class="pl-c">/* Every element that contains the supfoots class */</span>
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.footnotes</span> <span class="pl-e">.supfoots</span> { }
+<span class="pl-c">/* Every element that contains the subfoots class */</span>
+<span class="pl-e">.smallfoot</span> <span class="pl-e">.footnotes</span> <span class="pl-e">.subfoots</span> { }</pre></div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
