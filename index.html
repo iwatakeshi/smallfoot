@@ -191,7 +191,7 @@ which will always refer to the parent wrapper of <code>&lt;a&gt;</code>.</p>
         })
         .onMouseEnter(function ({ target }) {
           const footnote = $(target).find('a').attr('href');
-          $(target).tooltipster('content', $(footnote).text());
+          $(target).tooltipster('content', $(footnote).text().replace('↩', ''));
         });
       })
     </script>
