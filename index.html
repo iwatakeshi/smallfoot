@@ -40,14 +40,18 @@
     </p>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
-    <script type="text/javascript" src="js/test.js">
+    <script type="text/javascript" src="dist/smallfoot.js">
     </script>
     <script type="text/javascript">
     $(document).ready(function ({ references }){
-      $.smallfoot()
+      $.smallfoot({
+        footnotes: {
+          show: false
+        }
+      })
       .ready(function ({ references }) {
-        references.forEach(el => $(el).addClass('tooltip'));
-        $('.footnotes').hide();
+        references
+        .forEach(el => $(el).addClass('tooltip'));
         $('.tooltip').tooltipster({ trigger: 'click' });
       })
       .onClick(function ({ target, event }) {
