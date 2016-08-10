@@ -40,11 +40,11 @@
 <p>
 smallfoot is a small footnote library that takes a different approach to writing footnotes
 compared to bigfoot^1^. smallfoot's philosophy is all about the KISS principle and therefore leaves styling
-up to the user. However, smallfoot does provide a powerful syntax converter^2^ along with css
-classes that help the user find the right script or footnote.
+up to the user. However, smallfoot does provide a powerful syntax converter along with css
+classes that help the user find the right script or footnote^2^.
 
 ^1: { smallfoot also uses ES6 instead of CoffeeScript. }
-^2: { It's regex doing the hard work. }
+^2: { OK, maybe the converter not that powerful since there are limitations but PRs are always welcomed. }
 </p>
 
 <h2>
@@ -184,7 +184,7 @@ which will always refer to the parent wrapper of <code>&lt;a&gt;</code>.</p>
         })
         .ready(function ({ references }) {
           references.forEach(el => $(el).addClass('tooltip'));
-          $('.tooltip').tooltipster({ trigger: 'click' });
+          $('.tooltip').tooltipster({ trigger: 'click', maxWidth: 450 });
         })
         .onClick(function ({ target, event }) {
           event.preventDefault();
