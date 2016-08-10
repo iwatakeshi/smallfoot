@@ -38,7 +38,7 @@ classes that help the user find the right script or footnote.
 ### Using [Tooltipster](http://iamceege.github.io/tooltipster/) for footnotes.
 
 ```js
-$(document).ready(function ({ references }){
+$(document).ready(function (){
   $.smallfoot({
     footnotes: {
       show: false
