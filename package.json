@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/iwatakeshi/smallfoot/issues"
   },
-  "homepage": "https://github.com/iwatakeshi/smallfoot#readme"
+  "homepage": "https://github.com/iwatakeshi/smallfoot#readme",
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^6.0.0"
+  }
 }

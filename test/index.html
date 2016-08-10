@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/css/tooltipster.bundle.min.css">
   </head>
   <body>
     <p>
@@ -35,14 +36,26 @@
     <br>
     <p>
       ^2: { Or is it? }
-
+      ^3: { Well well well...}
     </p>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
     <script type="text/javascript" src="js/test.js">
     </script>
     <script type="text/javascript">
-    $(document).ready(function (){
-      $.smallfoot();
+    $(document).ready(function ({ references }){
+      $.smallfoot()
+      .ready(function ({ references }) {
+        references.forEach(el => $(el).addClass('tooltip'));
+        $('.footnotes').hide();
+        $('.tooltip').tooltipster({ trigger: 'click' });
+      })
+      .onClick(function ({ target, event }) {
+        event.preventDefault();
+      }).onMouseEnter(function ({ target }) {
+        const footnote = $(target).find('a').attr('href');
+        $(target).tooltipster('content', $(footnote).text());
+      });
     })
     </script>
   </body>
