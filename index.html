@@ -9,28 +9,6 @@
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/css/tooltipster.bundle.min.css">
     
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
-    <script src="javascripts/smallfoot/dist/smallfoot.min.js">
-    $(document).ready(function (){
-      $.smallfoot({
-        footnotes: {
-          show: false
-        }
-      })
-      .ready(function ({ references }) {
-        references.forEach(el => $(el).addClass('tooltip'));
-        $('.tooltip').tooltipster({ trigger: 'click' });
-      })
-      .onClick(function ({ target, event }) {
-        event.preventDefault();
-      })
-      .onMouseEnter(function ({ target }) {
-        const footnote = $(target).find('a').attr('href');
-        $(target).tooltipster('content', $(footnote).text());
-      });
-    })
-    </script>
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
@@ -193,6 +171,30 @@ which will always refer to the parent wrapper of <code>&lt;a&gt;</code>.</p>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
+    <script src="javascripts/smallfoot/dist/smallfoot.min.js">
+    </script>
+    <script>
+      $(document).ready(function (){
+        $.smallfoot({
+          footnotes: {
+            show: false
+          }
+        })
+        .ready(function ({ references }) {
+          references.forEach(el => $(el).addClass('tooltip'));
+          $('.tooltip').tooltipster({ trigger: 'click' });
+        })
+        .onClick(function ({ target, event }) {
+          event.preventDefault();
+        })
+        .onMouseEnter(function ({ target }) {
+          const footnote = $(target).find('a').attr('href');
+          $(target).tooltipster('content', $(footnote).text());
+        });
+      })
+    </script>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 		
   </body>
