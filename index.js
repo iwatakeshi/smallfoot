@@ -3,7 +3,7 @@
   class SmallFoot {
     /**
      * @constructor
-     * @param {Object} param The options for smallfoot.
+     * @param {Object} options The options for smallfoot.
      */
     constructor(options) {
       this._options = $.extend({}, this.defaults(), options);
