@@ -65,7 +65,7 @@ $(document).ready(function ({ references }){
 This method calls the callback function and passes an *object* with an array of `references`
 and `footnotes`.
 
-Note/TODO: This method is not event based and happens when you call it after initialization.
+Note/TODO: This method is not event based and will be called when you call it after initialization.
 
 Exmaple:
 
@@ -79,7 +79,7 @@ This method registers the callback to the specified event for any superscript an
 
 Note: Helper methods such as `onClick(), onMouseEnter(), onMouseLeave()` are available.
 Also, every registered callback will receive an *object* with `event`, `type: String`, and a custom `target`
-which will always refer wrapper of `<a>`.
+which will always refer to the parent wrapper of `<a>`.
 
 ## Options
 
