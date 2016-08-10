@@ -9,7 +9,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   var SmallFoot = function () {
     /**
      * @constructor
-     * @param {Object} param The options for smallfoot.
+     * @param {Object} options The options for smallfoot.
      */
     function SmallFoot(options) {
       var _this = this;
