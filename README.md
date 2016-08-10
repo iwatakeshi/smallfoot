@@ -95,25 +95,22 @@ Determines whether the `ul` or `ol` containing the footnotes should be displayed
 smallfoot follows a simple convention for its classes:
 
 ```css
-/* Every element that contains the smallfoot class */
+/* The elements that contains the smallfoot class */
 .smallfoot { }
 
-/* Every element that contains the superscript class */
+/* The elements that contains the superscript and subscript class */
 .smallfoot .superscript { }
-/* Every element that contains the subscript class */
 .smallfoot .subscript { }
 
-/* Every element that contains the reference class */
+/* The elements that contains the superscript and subscript reference class */
 .smallfoot .superscript .reference { }
-/* Every element that contains the reference class */
 .smallfoot .subscript .reference { }
 
-/* Every element that contains the footnote class */
+/* The elements that contains the superscript and subscript footnote class */
 .smallfoot .superscript .footnote { }
-/* Every element that contains the footnote class */
 .smallfoot .subscript .footnote { }
 
-/* Every element that contains the footnotes class */
+/* The elements that contains the footnotes class */
 .smallfoot .footnotes { }
 
 /* Every element that contains the supfoots class */
