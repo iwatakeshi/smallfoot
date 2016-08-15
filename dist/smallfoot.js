@@ -346,8 +346,6 @@ var SmallFoot = function (_EventEmitter) {
    * @param {Object} options The options for smallfoot.
    */
   function SmallFoot(options) {
-    var _ret;
-
     _classCallCheck(this, SmallFoot);
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SmallFoot).call(this));
@@ -386,12 +384,9 @@ var SmallFoot = function (_EventEmitter) {
         return _this.$on(event.name, event.method);
       });
     });
-    _this.on('ready', function () {});
-
-    return _ret = _this.init(), _possibleConstructorReturn(_this, _ret);
+    return _this;
   }
   /**
-   * @private
    * @method init
    * @description Initalizes SmallFoot
    */
@@ -516,12 +511,12 @@ var SmallFoot = function (_EventEmitter) {
         }).join('');
         text = $.isEmptyObject(subfootnotes) ? text : text + ' <ul class="smallfoot footnotes subfoots" style="' + footnoteStyle + '">\n          ' + subfootnotes + '\n        </ul>';
         $(p).replaceWith('<p>' + text + '</p>');
-        _this3.emit('process', text, p);
       });
       // Clean up empty paragraphs
-      this.$paragraphs.forEach(function (p) {
+      $('.smallfoot p').toArray().forEach(function (p) {
         if ($(p).text() === '') $(p).remove();
       });
+      this.emit('process');
       return this;
     }
     /**
@@ -545,7 +540,7 @@ var SmallFoot = function (_EventEmitter) {
       var useDiv = references.useDiv;
 
       var element = useDiv ? 'div' : type;
-      return isRef ? '\n          <' + element + ' class="smallfoot ' + type + 'script reference" id="' + type + '-fn-' + number + '">\n            <a href="#sup-fn-ref-' + number + '" rel="footnote">' + number + '</a>\n          </' + element + '>' : '<li>\n            <div class="smallfoot ' + type + 'script footnote">\n              <p id="' + type + '-fn-ref-' + number + '">\n                ' + note + '<a href="#' + type + '-fn-' + number + '" title="return to article"> ↩</a>\n              <p>\n            </div>\n          </li>';
+      return isRef ? '\n          <' + element + ' class="smallfoot ' + type + 'script reference" id="' + type + '-fn-' + number + '">\n            <a href="#' + type + '-fn-ref-' + number + '" rel="footnote">' + number + '</a>\n          </' + element + '>' : '<li>\n            <div class="smallfoot ' + type + 'script footnote">\n              <p id="' + type + '-fn-ref-' + number + '">\n                ' + note + '<a href="#' + type + '-fn-' + number + '" title="return to article"> ↩</a>\n              <p>\n            </div>\n          </li>';
     }
     /**
      * @method defaults
@@ -656,6 +651,7 @@ var SmallFoot = function (_EventEmitter) {
           switch ($(e.target).get(0).tagName.toLowerCase()) {
             case 'p':
               target = $(target).filter('sup');
+              console.log(target);
               return callback(getParam(e, target));
             case 'sup':
               return callback(getParam(e, target));

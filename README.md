@@ -29,7 +29,7 @@ classes that help the user find the right script or footnote.
 <!-- Add smallfoot -->
 <script src="{path to smallfoot}">
   // Initialize
-  $.smallfoot();
+  $.smallfoot().init();
 </script>
 ```
 
@@ -54,7 +54,8 @@ $(document).ready(function (){
   .onMouseEnter(function ({ target }) {
     const footnote = $(target).find('a').attr('href');
     $(target).tooltipster('content', $(footnote).text());
-  });
+  })
+  .init();
 })
 ```
 
@@ -64,8 +65,6 @@ $(document).ready(function (){
 
 This method calls the callback function and passes an *object* with an array of `references`
 and `footnotes`.
-
-Note/TODO: This method is not event based and will be called when you call it after initialization.
 
 Exmaple:
 

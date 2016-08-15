@@ -29,7 +29,6 @@ export default class SmallFoot extends EventEmitter {
         { name: 'mouseleave', method: (param) => this.emit('mouseleave', param) },
       ].forEach(event => this.$on(event.name, event.method));
     });
-    this.on('ready', () => {});
   }
   /**
    * @method init
@@ -133,10 +132,11 @@ export default class SmallFoot extends EventEmitter {
           ${subfootnotes}
         </ul>`;
       $(p).replaceWith(`<p>${text}</p>`);
-      this.emit('process', text, p);
     });
-      // Clean up empty paragraphs
-    this.$paragraphs.forEach(p => { if ($(p).text() === '') $(p).remove(); });
+    // Clean up empty paragraphs
+    $('.smallfoot p').toArray()
+    .forEach(p => { if ($(p).text() === '') $(p).remove(); });
+    this.emit('process');
     return this;
   }
   /**
@@ -156,7 +156,7 @@ export default class SmallFoot extends EventEmitter {
     return isRef ?
         `
           <${element} class="smallfoot ${type}script reference" id="${type}-fn-${number}">
-            <a href="#sup-fn-ref-${number}" rel="footnote">${number}</a>
+            <a href="#${type}-fn-ref-${number}" rel="footnote">${number}</a>
           </${element}>` :
           `<li>
             <div class="smallfoot ${type}script footnote">
@@ -240,6 +240,7 @@ export default class SmallFoot extends EventEmitter {
         let target = $(e.target);
         switch ($(e.target).get(0).tagName.toLowerCase()) {
           case 'p': target = $(target).filter('sup');
+          console.log(target);
             return callback(getParam(e, target));
           case 'sup': return callback(getParam(e, target));
           case 'sub': return callback(getParam(e, target));
