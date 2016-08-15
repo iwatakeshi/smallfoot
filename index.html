@@ -10,7 +10,7 @@
       Well this is a pargraph^1^. I hope this will work in the end^2^.
       Come on! I want to fight^3^.
       I love math n~1~
-      ^1: { Or is it? }
+      ^1: { Or is it? [google](www.google.com) }
       ~1: { Hello ? }
 
     </p>
@@ -40,7 +40,7 @@
     </p>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
-    <script type="text/javascript" src="dist/smallfoot.js">
+    <script type="text/javascript" src="dist/smallfoot.min.js">
     </script>
     <script type="text/javascript">
     $(document).ready(function ({ references }){
@@ -54,13 +54,12 @@
         .forEach(el => $(el).addClass('tooltip'));
         $('.tooltip').tooltipster({ trigger: 'click' });
       })
-      .onClick(function ({ target, event }) {
-        event.preventDefault();
-      }).onMouseEnter(function ({ target }) {
+      .onClick(({ event }) =>  event.preventDefault())
+      .onMouseEnter(function({ target }){
         const footnote = $(target).find('a').attr('href');
         $(target).tooltipster('content', $(footnote).text());
-      });
-    })
+      })
+    }).init();
     </script>
   </body>
 </html>
