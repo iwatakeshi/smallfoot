@@ -19,7 +19,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Smallfoot</h1>
-        <p class="header">A simpler version of bigfoot.js in ES6</p>
+        <p class="header">A simple jQuery plugin for footnotes.</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/iwatakeshi/smallfoot/zipball/master">Download ZIP</a></li>
@@ -35,7 +35,7 @@
         <h1>
 <a id="smallfoot" class="anchor" href="#smallfoot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>smallfoot</h1>
 
-<p>A simpler version of <a href="https://github.com/lemonmade/bigfoot">bigfoot.js</a> in ES6</p>
+<p>A simple jQuery plugin for footnotes.</p>
 
 <p>
 smallfoot is a small jQuery library that takes a different approach to writing footnotes
@@ -70,7 +70,7 @@ classes that help the user find the right script or footnote^2^.
 <span class="pl-c">&lt;!-- Add smallfoot --&gt;</span>
 <span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>{path to smallfoot}<span class="pl-pds">"</span></span>&gt;</span>
 <span class="pl-s1">  <span class="pl-c">// Initialize</span></span>
-<span class="pl-s1">  <span class="pl-smi">$</span>.<span class="pl-en">smallfoot</span>();</span>
+<span class="pl-s1">  <span class="pl-smi">$</span>.<span class="pl-en">smallfoot</span>().<span class="pl-en">init</span>();</span>
 <span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
 
 <h2>
@@ -173,7 +173,7 @@ which will always refer to the parent wrapper of <code>&lt;a&gt;</code>.</p>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
-    <script src="javascripts/smallfoot/dist/smallfoot.min.js">
+    <script src="javascripts/smallfoot.min.js">
     </script>
     <script>
       $(document).ready(function (){
@@ -192,7 +192,7 @@ which will always refer to the parent wrapper of <code>&lt;a&gt;</code>.</p>
         .onMouseEnter(function ({ target }) {
           const footnote = $(target).find('a').attr('href');
           $(target).tooltipster('content', $(footnote).text().replace('↩', ''));
-        });
+        }).init();
       })
     </script>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
