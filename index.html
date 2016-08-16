@@ -4,13 +4,31 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/css/tooltipster.bundle.min.css">
+
+    <style media="screen">
+      .tooltipster-sidetip.tooltipster-noir.tooltipster-noir-customized .tooltipster-box {
+        background: #FAFAFA;
+        border-color: white;
+        border-width: thin;
+        box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.4);
+      }
+
+      .tooltipster-sidetip.tooltipster-noir.tooltipster-noir-customized .tooltipster-content {
+        color: #243743;
+      }
+
+      .tooltipster-sidetip.tooltipster-noir.tooltipster-noir-customized .tooltipster-content a {
+        color: #243743;
+      }
+    </style>
+
   </head>
   <body>
     <p>
       Well this is a pargraph^1^. I hope this will work in the end^2^.
       Come on! I want to fight^3^.
       I love math n~1~
-      ^1: { Or is it? [google](www.google.com) }
+      ^1: { Or is it? [Google](https://www.google.com) }
       ~1: { Hello? }
 
     </p>
@@ -54,16 +72,20 @@
       .ready(function ({ references, footnotes }) {
         references
         .forEach(el => $(el).addClass('tooltip'));
-        references.forEach(el => {
-          console.log($(el).attr('data-tooltip-content', `#${$(el).attr('id')}`));
+
+        $('.tooltip').tooltipster({
+          trigger: 'click',
+          contentAsHTML: true,
+          interactive: true,
+          theme: ['tooltipster-noir', 'tooltipster-noir-customized'],
+          arrow: false,
         });
-        
-        $('.tooltip').tooltipster({ trigger: 'click' });
       })
       .onClick(({ event }) =>  event.preventDefault())
       .onMouseEnter(function({ target }){
         const footnote = $(target).find('a').attr('href');
-        $(target).tooltipster('content', md.renderInline($(footnote).text()));
+        $(target).tooltipster('instance')
+        .content(md.renderInline($(footnote).text()));
       })
       .init();
     });
