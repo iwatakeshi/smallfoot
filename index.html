@@ -4,14 +4,32 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/css/tooltipster.bundle.min.css">
+
+    <style media="screen">
+      .tooltipster-sidetip.tooltipster-noir.tooltipster-noir-customized .tooltipster-box {
+        background: #FAFAFA;
+        border-color: white;
+        border-width: thin;
+        box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.4);
+      }
+
+      .tooltipster-sidetip.tooltipster-noir.tooltipster-noir-customized .tooltipster-content {
+        color: #243743;
+      }
+
+      .tooltipster-sidetip.tooltipster-noir.tooltipster-noir-customized .tooltipster-content a {
+        color: #243743;
+      }
+    </style>
+
   </head>
   <body>
     <p>
       Well this is a pargraph^1^. I hope this will work in the end^2^.
       Come on! I want to fight^3^.
       I love math n~1~
-      ^1: { Or is it? }
-      ~1: { Hello ? }
+      ^1: { Or is it? [Google](https://www.google.com) }
+      ~1: { Hello? }
 
     </p>
     <br>
@@ -40,27 +58,37 @@
     </p>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/jquery.tooltipster/4.0.5/js/tooltipster.bundle.min.js"></script>
-    <script type="text/javascript" src="dist/smallfoot.js">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/7.0.0/markdown-it.min.js"></script>
+    <script type="text/javascript" src="dist/smallfoot.min.js">
     </script>
     <script type="text/javascript">
-    $(document).ready(function ({ references }){
+    $(document).ready(function (){
+      const md = window.markdownit({ html: true });
       $.smallfoot({
         footnotes: {
           show: false
         }
       })
-      .ready(function ({ references }) {
+      .ready(function ({ references, footnotes }) {
         references
         .forEach(el => $(el).addClass('tooltip'));
-        $('.tooltip').tooltipster({ trigger: 'click' });
+
+        $('.tooltip').tooltipster({
+          trigger: 'click',
+          contentAsHTML: true,
+          interactive: true,
+          theme: ['tooltipster-noir', 'tooltipster-noir-customized'],
+          arrow: false,
+        });
       })
-      .onClick(function ({ target, event }) {
-        event.preventDefault();
-      }).onMouseEnter(function ({ target }) {
+      .onClick(({ event }) =>  event.preventDefault())
+      .onMouseEnter(function({ target }){
         const footnote = $(target).find('a').attr('href');
-        $(target).tooltipster('content', $(footnote).text());
-      });
-    })
+        $(target).tooltipster('instance')
+        .content(md.renderInline($(footnote).text()));
+      })
+      .init();
+    });
     </script>
   </body>
 </html>
