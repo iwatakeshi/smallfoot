@@ -1,7 +1,7 @@
 {
   "name": "smallfoot",
   "version": "2.0.0",
-  "description": "A small and cleaner version of bigfoot.js",
+  "description": "A simple jQuery plugin for footnotes",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
