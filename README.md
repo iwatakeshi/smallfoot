@@ -1,5 +1,5 @@
 # smallfoot
-A simpler version of [bigfoot.js](https://github.com/lemonmade/bigfoot) in ES6
+A simple jQuery plugin for footnotes.
 
 smallfoot is a small jQuery library that takes a different approach to writing footnotes
 compared to bigfoot. smallfoot's philosophy is all about the KISS principle and therefore leaves styling
