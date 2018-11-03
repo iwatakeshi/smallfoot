@@ -1,4 +1,7 @@
 # smallfoot
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/iwatakeshi/smallfoot.svg)](https://greenkeeper.io/)
+
 A simple jQuery plugin for footnotes.
 
 smallfoot is a small jQuery library that takes a different approach to writing footnotes
